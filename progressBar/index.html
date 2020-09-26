@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Progress Bar</title>
+</head>
+
+<body>
+  <div class="bar-container">
+    <div class="bar" />
+  </div>
+
+  <button onclick="fillBar(2)"></button>
+
+  <style>
+    body {
+      background-color: lightcyan;
+    }
+
+    .bar-container {
+      width: 200px;
+      height: 30px;
+      background-color: gray;
+      margin: 45px;
+    }
+
+    .bar {
+      background-color: green;
+      height: 100%;
+      width: 0%
+    }
+  </style>
+
+  <script>
+    function fillBar(seconds) {
+      console.log('clicked')
+      const bar = document.querySelector(".bar")
+      let currentPercent = 0
+      const interval = setInterval(() => {
+        //must put in percent sign or won't work, (convert to css)
+        console.log('running at ' + currentPercent)
+
+        if (currentPercent === 100) {
+          // have to clear the interval, or will repeat constantly
+          clearInterval(interval)
+        }
+        currentPercent++
+        bar.style.width = currentPercent + '%'
+        //dividing by 100 makes it look smooth, first convert seconds to milliseconds, then divide by 20, makes it run super fast and look smooth even though
+      }, (seconds * 1000) / 100);
+    }
+  </script>
+</body>
+
+</html>
